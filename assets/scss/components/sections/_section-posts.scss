@@ -1,0 +1,101 @@
+@use "../../mixins" as *;
+@use "../../presets" as *;
+
+.posts {
+    &__container {
+      @extend %container;
+      
+      @include lg-min {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+  
+      @include lg-md {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+  
+      @include md-sm {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+  
+      @include sm {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+    }
+
+    &__item-container {
+
+    display: grid;
+    gap: $gap;
+    padding-bottom: $gap;
+
+    @include lg-min {
+        grid-template-areas: "c1 c1 c2 c3" "c4 c5 c6 c6";
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @include lg-md {
+        grid-template-areas: "c1 c1 c2" "c3 c4 c4" "c5 c5 c6";
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include md-sm {
+        grid-template-areas: "c1 c2" "c3 c4" "c5 c6";
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include sm {
+        grid-template-areas: "c1" "c2" "c3" "c4" "c5" "c6";
+        grid-template-columns: 1fr;
+      }
+}
+
+&__actions {
+  display: flex;
+  justify-content: center;
+}
+}
+
+@for $i from 1 through 6 {
+    .post-item:nth-of-type(#{$i}) {
+      grid-area: c#{$i};
+    }
+  }
+
+.post-item {
+  background-color: #f2f2f2;
+
+  &__link {
+    display: grid;
+    overflow: hidden;
+    height: 100%;
+    grid-template-rows: 300px 1fr;
+
+    color: $color-gray;
+  }
+
+  &__image {
+    display: flex;
+    overflow: hidden;
+    max-height: 300px;
+    background-color: $color-primary;
+    background-position: center;
+    background-size: cover;
+    }
+
+  &__description {
+    font-size: 1rem;
+    letter-spacing: normal;
+    text-align: center;
+  }  
+  
+  &__text-box {
+    display: grid;
+    align-content: center;
+    padding: 20px;
+  }
+}
+
+
+
+
